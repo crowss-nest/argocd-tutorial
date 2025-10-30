@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-argocd
+  name: hello-app
   labels:
     app: hello
 spec:
@@ -14,6 +14,8 @@ spec:
       labels:
         app: hello
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker-1  # 워커 노드에만 배포
       containers:
       - name: hello
         image: gcr.io/google-samples/hello-app:1.0
