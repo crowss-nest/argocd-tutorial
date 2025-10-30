@@ -15,9 +15,11 @@ spec:
         app: hello
     spec:
       nodeSelector:
-        kubernetes.io/hostname: worker-1  # 워커 노드에만 배포
+        kubernetes.io/hostname: worker-1
       containers:
       - name: hello
-        image: gcr.io/google-samples/hello-app:1.0
+        image: hashicorp/http-echo:latest
+        args:
+        - "-text=Hello from worker-1!"
         ports:
-        - containerPort: 8080
+        - containerPort: 5678
